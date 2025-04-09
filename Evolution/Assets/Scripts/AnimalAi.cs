@@ -166,7 +166,7 @@ public class AnimalAi : MonoBehaviour
                     break;
                 }
             }
-            //Debug.DrawRay(transform.position, dir * stats.eyes, color);
+            Debug.DrawRay(transform.position, dir * stats.eyes, color);
         }
 
         // Update detected targets
@@ -269,65 +269,6 @@ public class AnimalAi : MonoBehaviour
                     if (childAi)
                     {
                         // Inherit map borders
-                        childAi.borderStart = borderStart;
-                        childAi.borderEnd = borderEnd;
-                    }
-                }
-            }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Same logic as OnCollisionStay2D, triggered on first contact
-        if (collision.gameObject.layer == 6)
-        {
-            GameObject cow2 = collision.gameObject;
-            if (!closestWoman) return;
-
-            if (cow2 == closestWoman.gameObject && state == State.Lover)
-            {
-                if (stats.gender)
-                {
-                    dest.target = target;
-                    stats.canLove = 10;
-                    state = State.Searchnig;
-
-                    cow2.GetComponent<Stats>().canLove = 10;
-                    cow2.GetComponent<AnimalAi>().state = State.Searchnig;
-                    cow2.GetComponent<AIDestinationSetter>().target = cow2.transform.parent.GetChild(1);
-
-                    Debug.Log(1);
-
-                    GameObject newChild = Instantiate(child);
-                    newChild.transform.GetChild(1).position = cow2.transform.position;
-                    newChild = newChild.transform.GetChild(0).gameObject;
-                    newChild.transform.position = cow2.transform.position;
-
-                    Stats childStats = newChild.GetComponent<Stats>();
-                    AnimalAi childAi = newChild.GetComponent<AnimalAi>();
-
-                    text.text = (int.Parse(text.text) + 1).ToString();
-
-                    if (childStats)
-                    {
-                        childAi.text = text;
-                        childStats.health = 100;
-                        childStats.maxHealth = 100;
-                        childStats.hunger = 1;
-                        childStats.thirsty = 1;
-
-                        float closerTo = Random.Range(0, 1);
-
-                        childStats.thirstynes = (stats.thirstynes - cow2.GetComponent<Stats>().thirstynes) * closerTo + cow2.GetComponent<Stats>().thirstynes + Random.Range(-0.1f, 0.1f);
-                        childStats.thirstResistance = (stats.thirstResistance - cow2.GetComponent<Stats>().thirstResistance) * closerTo + cow2.GetComponent<Stats>().thirstResistance + Random.Range(-0.1f, 0.1f);
-                        childStats.hungrines = (stats.hungrines - cow2.GetComponent<Stats>().hungrines) * closerTo + cow2.GetComponent<Stats>().hungrines + Random.Range(-0.1f, 0.1f);
-                        childStats.hungerResistance = (stats.hungerResistance - cow2.GetComponent<Stats>().hungerResistance) * closerTo + cow2.GetComponent<Stats>().hungerResistance + Random.Range(-0.1f, 0.1f);
-                        childStats.eyes = (stats.eyes - cow2.GetComponent<Stats>().eyes) * closerTo + cow2.GetComponent<Stats>().eyes + Random.Range(-1f, 1f);
-                    }
-
-                    if (childAi)
-                    {
                         childAi.borderStart = borderStart;
                         childAi.borderEnd = borderEnd;
                     }
