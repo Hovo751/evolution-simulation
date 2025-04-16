@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.82
@@ -749,6 +753,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.82
@@ -1020,6 +1028,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94
@@ -1145,6 +1157,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94
@@ -1423,6 +1439,9 @@ MonoBehaviour:
   animals: []
   water: []
   bushes: []
+  PopulationGraph: {fileID: 1868045929}
+  population: {fileID: 1332850204}
+  lastPopulation: 0
   gridStart: {fileID: 0}
   gridEnd: {fileID: 0}
 --- !u!4 &665595829
@@ -1609,6 +1628,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.82
@@ -2388,6 +2411,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94
@@ -2854,6 +2881,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.82
@@ -2979,6 +3010,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94
@@ -3115,6 +3150,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94
@@ -3579,15 +3618,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dots:
-  - 0
-  - 0
-  - 0
-  - 0
+  - 10
+  - 10
   dotsTF: []
-  maxDots: 10
+  rectsTF: []
+  maxDots: 25
   dotExample: {fileID: 2025251504769152427, guid: 59c8a2a6af2557b40999e9bd685ccf2d, type: 3}
+  rectExample: {fileID: 4844647447670925670, guid: 53179304fd8f696408d0e8725ea9d1dc, type: 3}
   width: 266.4
-  height: 0
+  height: 125.2
 --- !u!114 &1868045932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4086,6 +4125,10 @@ PrefabInstance:
       propertyPath: borderStart
       value: 
       objectReference: {fileID: 1322619414}
+    - target: {fileID: 7576629526674764039, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
+      propertyPath: PopulationGraph
+      value: 
+      objectReference: {fileID: 1868045929}
     - target: {fileID: 7761844395701585690, guid: f341fe834a33b3848beb8feb4c4d0c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.82

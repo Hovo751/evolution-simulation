@@ -259,11 +259,11 @@ public class AnimalAi : MonoBehaviour
 
                         float closerTo = Random.Range(0, 1);
 
-                        childStats.thirstynes = (stats.thirstynes - cow2.GetComponent<Stats>().thirstynes) * closerTo + cow2.GetComponent<Stats>().thirstynes + Random.Range(-0.1f, 0.1f);
-                        childStats.thirstResistance = (stats.thirstResistance - cow2.GetComponent<Stats>().thirstResistance) * closerTo + cow2.GetComponent<Stats>().thirstResistance + Random.Range(-0.1f, 0.1f);
-                        childStats.hungrines = (stats.hungrines - cow2.GetComponent<Stats>().hungrines) * closerTo + cow2.GetComponent<Stats>().hungrines + Random.Range(-0.1f, 0.1f);
-                        childStats.hungerResistance = (stats.hungerResistance - cow2.GetComponent<Stats>().hungerResistance) * closerTo + cow2.GetComponent<Stats>().hungerResistance + Random.Range(-0.1f, 0.1f);
-                        childStats.eyes = (stats.eyes - cow2.GetComponent<Stats>().eyes) * closerTo + cow2.GetComponent<Stats>().eyes + Random.Range(-1f, 1f);
+                        childStats.thirstynes = (stats.thirstynes - cow2.GetComponent<Stats>().thirstynes) * closerTo + cow2.GetComponent<Stats>().thirstynes + Random.Range(-0.12f, 0.08f);
+                        childStats.thirstResistance = (stats.thirstResistance - cow2.GetComponent<Stats>().thirstResistance) * closerTo + cow2.GetComponent<Stats>().thirstResistance + Random.Range(-0.12f, 0.08f);
+                        childStats.hungrines = (stats.hungrines - cow2.GetComponent<Stats>().hungrines) * closerTo + cow2.GetComponent<Stats>().hungrines + Random.Range(-0.12f, 0.08f);
+                        childStats.hungerResistance = (stats.hungerResistance - cow2.GetComponent<Stats>().hungerResistance) * closerTo + cow2.GetComponent<Stats>().hungerResistance + Random.Range(-0.12f, 0.08f);
+                        childStats.eyes = (stats.eyes - cow2.GetComponent<Stats>().eyes) * closerTo + cow2.GetComponent<Stats>().eyes + Random.Range(-1.2f, 0.8f);
                     }
 
                     if (childAi)
