@@ -15,6 +15,8 @@ public class AnimalAi : MonoBehaviour
 
     public State state = State.Searchnig;
     public Stats stats;
+    public float searchTime = 5.0f;
+    public float currentSearchTime = 0.0f;
 
     // Targets and references
     public Transform target;
@@ -24,8 +26,8 @@ public class AnimalAi : MonoBehaviour
     public Transform closestWater;
     public Transform closestWoman;
     public GameObject child;
+    public GameObject worldController;
     public AIDestinationSetter dest;
-    public TextMeshProUGUI text;
 
     private void Start()
     {
@@ -55,8 +57,9 @@ public class AnimalAi : MonoBehaviour
         else
         {
             // Random roaming logic if no specific state
-            if (Vector2.Distance(target.position, transform.position) <= 1 || target.position == transform.position)
+            if (Vector2.Distance(target.position, transform.position) <= 1 || target.position == transform.position || currentSearchTime > searchTime)
             {
+                currentSearchTime = 0;
                 // Pick random direction and position
                 float randomAngle = Random.Range(0.001f, Mathf.PI * 2);
                 target.position = new Vector3(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * Random.Range(0, stats.eyes) + transform.position;
@@ -71,7 +74,7 @@ public class AnimalAi : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Linecast(transform.position, target.position, LayerMask.GetMask("Water"));
                 if (hit)
                 {
-                    Debug.DrawLine(transform.position, hit.point, new Color(0, 0, 1), 10);
+                    //Debug.DrawLine(transform.position, hit.point, new Color(0, 0, 1), 10);
                     target.position = new Vector3(hit.point.x, hit.point.y) + new Vector3(0, 0, 0.001f);
                 }
 
@@ -85,6 +88,7 @@ public class AnimalAi : MonoBehaviour
         // Constantly update state and environment awareness
         StateAction();
         GetEyes();
+        currentSearchTime += Time.deltaTime;
     }
 
     private void GetEyes()
@@ -166,7 +170,7 @@ public class AnimalAi : MonoBehaviour
                     break;
                 }
             }
-            Debug.DrawRay(transform.position, dir * stats.eyes, color);
+            //Debug.DrawRay(transform.position, dir * stats.eyes, color);
         }
 
         // Update detected targets
@@ -246,12 +250,12 @@ public class AnimalAi : MonoBehaviour
                     Stats childStats = newChild.GetComponent<Stats>();
                     AnimalAi childAi = newChild.GetComponent<AnimalAi>();
 
-                    text.text = (int.Parse(text.text) + 1).ToString();
+                    worldController.GetComponent<WorldController>().population++;
 
                     if (childStats)
                     {
                         // Inherit random traits from parents
-                        childAi.text = text;
+                        childAi.worldController = worldController;
                         childStats.health = 100;
                         childStats.maxHealth = 100;
                         childStats.hunger = 1;
@@ -259,11 +263,11 @@ public class AnimalAi : MonoBehaviour
 
                         float closerTo = Random.Range(0, 1);
 
-                        childStats.thirstynes = (stats.thirstynes - cow2.GetComponent<Stats>().thirstynes) * closerTo + cow2.GetComponent<Stats>().thirstynes + Random.Range(-0.12f, 0.08f);
-                        childStats.thirstResistance = (stats.thirstResistance - cow2.GetComponent<Stats>().thirstResistance) * closerTo + cow2.GetComponent<Stats>().thirstResistance + Random.Range(-0.12f, 0.08f);
-                        childStats.hungrines = (stats.hungrines - cow2.GetComponent<Stats>().hungrines) * closerTo + cow2.GetComponent<Stats>().hungrines + Random.Range(-0.12f, 0.08f);
-                        childStats.hungerResistance = (stats.hungerResistance - cow2.GetComponent<Stats>().hungerResistance) * closerTo + cow2.GetComponent<Stats>().hungerResistance + Random.Range(-0.12f, 0.08f);
-                        childStats.eyes = (stats.eyes - cow2.GetComponent<Stats>().eyes) * closerTo + cow2.GetComponent<Stats>().eyes + Random.Range(-1.2f, 0.8f);
+                        childStats.thirstynes = (stats.thirstynes - cow2.GetComponent<Stats>().thirstynes) * closerTo + cow2.GetComponent<Stats>().thirstynes + Random.Range(-0.08f, 0.15f);
+                        childStats.thirstResistance = (stats.thirstResistance - cow2.GetComponent<Stats>().thirstResistance) * closerTo + cow2.GetComponent<Stats>().thirstResistance + Random.Range(-0.08f, 0.15f);
+                        childStats.hungrines = (stats.hungrines - cow2.GetComponent<Stats>().hungrines) * closerTo + cow2.GetComponent<Stats>().hungrines + Random.Range(-0.08f, 0.15f);
+                        childStats.hungerResistance = (stats.hungerResistance - cow2.GetComponent<Stats>().hungerResistance) * closerTo + cow2.GetComponent<Stats>().hungerResistance + Random.Range(-0.08f, 0.15f);
+                        childStats.eyes = (stats.eyes - cow2.GetComponent<Stats>().eyes) * closerTo + cow2.GetComponent<Stats>().eyes + Random.Range(-1.5f, 0.5f);
                     }
 
                     if (childAi)

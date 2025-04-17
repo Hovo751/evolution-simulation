@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GraphEditor : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GraphEditor : MonoBehaviour
     public GameObject rectExample;
     public float width;
     public float height;
+    public Color color;
 
     void Update()
     {
@@ -28,9 +30,10 @@ public class GraphEditor : MonoBehaviour
             dotsNew.Add(newDot);
             newDot.localPosition = Vector3.Lerp(new Vector3(width / -2, 0, 0), new Vector3(width / 2 - 10, 0, 0), i / (dotsOnScreen - 1.0f));
             float dotVal = dots[dots.Count - dotsOnScreen + i];
-            newDot.localPosition = Vector3.Lerp(newDot.localPosition - new Vector3(0, height / 2, 0), newDot.localPosition + new Vector3(0, height / 2 - 10, 0), dotVal / (max - min + 1));
+            newDot.localPosition = Vector3.Lerp(newDot.localPosition - new Vector3(0, height / 2, 0), newDot.localPosition + new Vector3(0, height / 2 - 10, 0), (dotVal - min) / (max - min + 1));
             currentPos = newDot.localPosition + new Vector3(5 / Mathf.Sqrt(dotsOnScreen), 5 / Mathf.Sqrt(dotsOnScreen));
             newDot.localScale = new Vector3(1 / Mathf.Sqrt(dotsOnScreen), 1 / Mathf.Sqrt(dotsOnScreen));
+            newDot.gameObject.GetComponent<Image>().color = color;
 
             if (i != dotsOnScreen - 1)
             {
@@ -40,6 +43,7 @@ public class GraphEditor : MonoBehaviour
                 newRect.localPosition = (lastPos + currentPos) / 2;
                 newRect.right = dir.normalized;
                 newRect.sizeDelta = new Vector2(dir.magnitude, 2);
+                newRect.gameObject.GetComponent<Image>().color = color;
             }
 
             lastPos = newDot.localPosition + new Vector3(5 / Mathf.Sqrt(dotsOnScreen), 5 / Mathf.Sqrt(dotsOnScreen));
@@ -73,7 +77,7 @@ public class GraphEditor : MonoBehaviour
     }
     float GetMinNumber(List<float> list, int n)
     {
-        float min = 0;
+        float min = list[list.Count - 1];
         n = Mathf.Min(list.Count, n);
 
         for (int i = list.Count - n; i < list.Count; i++)

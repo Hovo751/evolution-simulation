@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -19,6 +20,7 @@ public class Stats : MonoBehaviour
     private bool isTouchingWater = false;
     private bool isTouchingBush = false;
     private Bush bush;
+    private bool setStats = false;
 
     void Start()
     {
@@ -31,10 +33,18 @@ public class Stats : MonoBehaviour
     void Update()
     {
         // Clamp some values to prevent going too low
-        hungrines = Mathf.Max(hungrines, 0.05f);
-        thirstynes = Mathf.Max(thirstynes, 0.05f);
-        hungerResistance = Mathf.Max(hungerResistance, 1);
-        thirstResistance = Mathf.Max(thirstResistance, 1);
+        hungrines = Mathf.Max(hungrines, 0.1f);
+        thirstynes = Mathf.Max(thirstynes, 0.1f);
+        hungerResistance = Mathf.Max(hungerResistance, 2f);
+        thirstResistance = Mathf.Max(thirstResistance, 2f);
+        eyes = Mathf.Max(eyes, 4);
+        gameObject.GetComponent<AIPath>().maxSpeed = (hungrines + hungerResistance + thirstynes + thirstResistance) / 1.3f;
+
+        if (!setStats)
+        {
+            ai.worldController.GetComponent<WorldController>().speed += gameObject.GetComponent<AIPath>().maxSpeed;
+            setStats = true;
+        }
 
         // Cooldown for mating
         canLove -= Time.deltaTime;
@@ -72,7 +82,8 @@ public class Stats : MonoBehaviour
         // Die if health too low
         if (health < 0)
         {
-            ai.text.text = (int.Parse(ai.text.text) - 1).ToString();
+            ai.worldController.GetComponent<WorldController>().population--;
+            ai.worldController.GetComponent<WorldController>().speed -= gameObject.GetComponent<AIPath>().maxSpeed;
             Destroy(transform.parent.gameObject);
         }
 
